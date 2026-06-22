@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+  "pages": [
+    {
+      "route": "smart-notifications-app",
+      "component": "root",
+      "online": true,
+      "offline": true
+    }
+  ],
+  "extensions": [
+  ]
+}
+
