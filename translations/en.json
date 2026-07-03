@@ -1,4 +1,16 @@
 {
-  "welcomeToModule": "Welcome to smart-notifications-app!",
-  "getStarted": "Get started by adding routes, extensions, or components."
+  "acuityCritical": "Critical",
+  "acuityRoutine": "Routine",
+  "acuityStat": "STAT",
+  "closeNotificationsPanel": "Close notifications",
+  "markAllReviewed": "Mark all reviewed",
+  "markReviewed": "Mark reviewed",
+  "noNotifications": "You have no notifications.",
+  "notificationsHeading": "Notifications",
+  "notificationsPanel": "Notifications panel",
+  "notificationsTooltip": "Notifications",
+  "notificationsWithCount": "{{count}} unread notifications",
+  "reviewedBy": "Reviewed by {{reviewer}}",
+  "unknownReviewer": "Unknown user",
+  "viewChart": "View chart"
 }
