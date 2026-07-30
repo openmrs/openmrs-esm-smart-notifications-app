@@ -17,8 +17,11 @@ export function startupApp() {
 export const root = getAsyncLifecycle(() => import('./root.component'), options);
 
 // Extensions
+export const notifyWhenResulted = getAsyncLifecycle(
+  () => import('./lab-order-opt-in/notify-when-resulted.extension'),
+  options,
+);
 
 // Modals
 
 // Workspaces
-
