@@ -1,21 +1,24 @@
-import { Type, validators } from '@openmrs/esm-framework';
+import { Type } from '@openmrs/esm-framework';
 
 export const configSchema = {
-  // Add your configuration schema here
-  // Example:
-  // logo: {
-  //   src: {
-  //     _type: Type.String,
-  //     _default: '',
-  //     _description: 'The path or URL to the logo image',
-  //     _validators: [validators.isUrl],
-  //   },
-  //   alt: {
-  //     _type: Type.String,
-  //     _default: 'Logo',
-  //     _description: 'The alternative text for the logo image',
-  //   },
-  // },
+  badge: {
+    countRoutineNotifications: {
+      _type: Type.Boolean,
+      _default: false,
+      _description:
+        'Whether routine (low acuity) notifications count towards the bell badge. By default only critical and STAT notifications increment the badge, matching the smart notification workflow.',
+    },
+    maxCount: {
+      _type: Type.Number,
+      _default: 99,
+      _description: 'The maximum unread count to display in the badge before showing a "+" suffix (e.g. "99+").',
+    },
+  },
 };
 
-export type ConfigSchema = Record<string, never>;
+export interface ConfigSchema {
+  badge: {
+    countRoutineNotifications: boolean;
+    maxCount: number;
+  };
+}
