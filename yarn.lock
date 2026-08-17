@@ -2431,9 +2431,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@openmrs/eslint-config@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@openmrs/eslint-config@npm:2.0.0"
+"@openmrs/eslint-config@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@openmrs/eslint-config@npm:2.1.0"
   dependencies:
     "@eslint/js": "npm:^9.39.0"
     eslint-config-prettier: "npm:^10.1.8"
@@ -2447,7 +2447,7 @@ __metadata:
   peerDependencies:
     eslint: ^9.39.0
     typescript: ">=5"
-  checksum: 10c0/f1296038022060ac9c5bd5b8789966c86852a3e71895be1eabb1823cd91ab182dccf6d9bfe795cc5634428ea8dd9ec3a95226f55af2ffd52988cfda63d131499
+  checksum: 10c0/8f5d990556784f21192ae9bab7739209dbc96a3c30f71c94384a95ae7f0de78840a21c70e8ff32e337ef538a6f281159db40696a290c72ce15fc3b8c9f799038
   languageName: node
   linkType: hard
 
@@ -2719,7 +2719,7 @@ __metadata:
   resolution: "@openmrs/esm-smart-notifications-app@workspace:."
   dependencies:
     "@carbon/react": "npm:^1.83.0"
-    "@openmrs/eslint-config": "npm:^2.0.0"
+    "@openmrs/eslint-config": "npm:^2.1.0"
     "@openmrs/esm-framework": "npm:next"
     "@openmrs/rspack-config": "npm:next"
     "@rspack/cli": "npm:^1.7.10"
