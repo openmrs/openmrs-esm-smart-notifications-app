@@ -18,7 +18,14 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       include: ['src/**/*.{ts,tsx}'],
-      exclude: ['**/node_modules/**', '**/vendor/**', '**/src/**/*.test.*', '**/src/declarations.d.ts', '**/e2e/**', 'src/index.ts'],
+      exclude: [
+        '**/node_modules/**',
+        '**/vendor/**',
+        '**/src/**/*.test.*',
+        '**/src/declarations.d.ts',
+        '**/e2e/**',
+        'src/index.ts',
+      ],
       thresholds: {
         statements: 80,
         branches: 80,
@@ -34,9 +41,9 @@ export default defineConfig({
     alias: [
       { find: /^@openmrs\/esm-framework$/, replacement: '@openmrs/esm-framework/mock' },
       { find: 'react-i18next', replacement: r('./__mocks__/react-i18next.js') },
-      { find: /^@hooks\/(.*)$/, replacement: r('./src/hooks/') + '$1' },
-      { find: /^@resources\/(.*)$/, replacement: r('./src/resources/') + '$1' },
-      { find: /^@utils\/(.*)$/, replacement: r('./src/utils/') + '$1' },
+      { find: /^__mocks__$/, replacement: r('./__mocks__/index.ts') },
+      { find: /^@core\/(.*)$/, replacement: r('./src/core/') + '$1' },
+      { find: /^@sources\/(.*)$/, replacement: r('./src/sources/') + '$1' },
     ],
   },
 });
