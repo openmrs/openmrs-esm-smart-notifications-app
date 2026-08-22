@@ -1,14 +1,47 @@
 {
   "$schema": "https://json.openmrs.org/routes.schema.json",
+  "backendDependencies": {
+    "webservices.rest": "^2.24.0",
+    "fhir2": ">=1.2"
+  },
+  "optionalBackendDependencies": {
+    "notifications": {
+      "version": "^1.0.0",
+      "feature": {
+        "flagName": "notificationsBackendSource",
+        "label": "Server-side notifications",
+        "description": "Surfaces notifications raised by the `notifications` backend module alongside the ones derived on the client. Without it, the lab-results source still works on its own."
+      }
+    }
+  },
   "pages": [
     {
-      "route": "smart-notifications-app",
+      "route": "smart-notifications",
       "component": "root",
       "online": true,
-      "offline": true
+      "offline": false
     }
   ],
   "extensions": [
+    {
+      "name": "smart-notification-bell",
+      "component": "notificationBell",
+      "slot": "notifications-menu-button-slot",
+      "online": true,
+      "offline": false
+    },
+    {
+      "name": "smart-notification-rows",
+      "component": "notificationRows",
+      "slot": "notifications-nav-menu-slot",
+      "online": true,
+      "offline": false
+    }
+  ],
+  "modals": [
+    {
+      "name": "smart-notification-detail-modal",
+      "component": "notificationDetailModal"
+    }
   ]
 }
-

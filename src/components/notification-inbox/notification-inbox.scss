@@ -1,0 +1,122 @@
+@use '@carbon/layout';
+@use '@carbon/type';
+
+.container {
+  padding: layout.$spacing-05;
+}
+
+.tile {
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  gap: layout.$spacing-03;
+  padding: layout.$spacing-05;
+  border-bottom: 1px solid var(--cds-border-subtle);
+}
+
+.heading {
+  @include type.type-style('heading-03');
+  margin: 0;
+}
+
+.unreadCount {
+  @include type.type-style('label-01');
+  color: var(--cds-text-secondary);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  align-items: center;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--cds-border-subtle);
+  cursor: pointer;
+  display: flex;
+  gap: layout.$spacing-04;
+  padding: layout.$spacing-05;
+  text-align: left;
+  width: 100%;
+
+  &:hover {
+    background-color: var(--cds-layer-hover);
+  }
+}
+
+// An unread row carries a rule down its leading edge. Padding is reduced by the border width so the
+// text does not shift when a row is read.
+.unread {
+  border-left: layout.$spacing-02 solid var(--cds-support-info);
+  padding-left: calc(#{layout.$spacing-05} - #{layout.$spacing-02});
+}
+
+.rowBody {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: layout.$spacing-02;
+  min-width: 0;
+}
+
+.rowMeta {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: layout.$spacing-03;
+}
+
+.rowKind {
+  @include type.type-style('label-01');
+  color: var(--cds-text-secondary);
+}
+
+.rowTime {
+  @include type.type-style('label-01');
+  color: var(--cds-text-secondary);
+  margin-left: auto;
+}
+
+.rowTitle {
+  @include type.type-style('body-compact-01');
+  color: var(--cds-text-primary);
+}
+
+.rowSubtitle {
+  @include type.type-style('label-01');
+  color: var(--cds-text-secondary);
+}
+
+.chevron {
+  color: var(--cds-icon-secondary);
+  flex-shrink: 0;
+}
+
+.error,
+.emptyTitle,
+.emptyBody {
+  padding: 0 layout.$spacing-05;
+}
+
+.error {
+  @include type.type-style('body-compact-01');
+  color: var(--cds-text-error);
+  padding-block: layout.$spacing-05;
+}
+
+.emptyTitle {
+  @include type.type-style('heading-compact-01');
+  padding-top: layout.$spacing-05;
+}
+
+.emptyBody {
+  @include type.type-style('body-compact-01');
+  color: var(--cds-text-secondary);
+  padding-bottom: layout.$spacing-05;
+}
