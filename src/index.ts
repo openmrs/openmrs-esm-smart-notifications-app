@@ -1,4 +1,4 @@
-import { getAsyncLifecycle, getSyncLifecycle, defineConfigSchema } from '@openmrs/esm-framework';
+import { getAsyncLifecycle, defineConfigSchema } from '@openmrs/esm-framework';
 import { configSchema } from './config-schema';
 import { moduleName } from './constants';
 
@@ -17,8 +17,8 @@ export function startupApp() {
 export const root = getAsyncLifecycle(() => import('./root.component'), options);
 
 // Extensions
+export const notificationBell = getAsyncLifecycle(() => import('./notifications/notification-bell.extension'), options);
 
 // Modals
 
 // Workspaces
-

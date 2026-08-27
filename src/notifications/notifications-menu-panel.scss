@@ -1,0 +1,50 @@
+@use '@carbon/layout';
+@use '@carbon/type';
+
+.panel {
+  position: fixed;
+  top: var(--omrs-topnav-height);
+  inset-inline-end: 0;
+  z-index: 8000;
+  display: flex;
+  flex-direction: column;
+  width: 24rem;
+  max-width: 100vw;
+  height: calc(100vh - var(--omrs-topnav-height));
+  background-color: var(--cds-layer);
+  border-inline-start: 1px solid var(--cds-border-subtle);
+  // Carbon does not expose a box-shadow token; matches the elevation used by core header panels.
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: layout.$spacing-04 layout.$spacing-03 layout.$spacing-04 layout.$spacing-05;
+  border-bottom: 1px solid var(--cds-border-subtle);
+}
+
+.heading {
+  @include type.type-style('heading-compact-02');
+  color: var(--cds-text-primary);
+  margin: 0;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: layout.$spacing-02;
+}
+
+.body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+.emptyState {
+  @include type.type-style('body-compact-01');
+  color: var(--cds-text-secondary);
+  padding: layout.$spacing-06 layout.$spacing-05;
+  text-align: center;
+}

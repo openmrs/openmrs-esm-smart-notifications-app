@@ -9,6 +9,14 @@
     }
   ],
   "extensions": [
+    {
+      "name": "smart-notification-bell",
+      "slot": "top-nav-actions-slot",
+      "component": "notificationBell",
+      "online": true,
+      "offline": true,
+      "order": 10
+    }
   ]
 }
 
