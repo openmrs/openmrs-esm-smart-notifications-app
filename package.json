@@ -16,6 +16,7 @@
     "test:watch": "vitest watch",
     "coverage": "vitest run --coverage --passWithNoTests",
     "typescript": "tsc",
+    "sync-routes": "node tools/sync-routes.mjs",
     "lint": "eslint src",
     "extract-translations": "i18next 'src/**/*.component.tsx' 'src/**/*.extension.tsx' 'src/**/*.modal.tsx' 'src/core/*.ts' 'src/sources/**/*.ts' 'src/index.ts' --config ./tools/i18next-parser.config.js",
     "prettier": "prettier --config prettier.config.js --write \"src/**/*.{ts,tsx,css,scss}\"",
