@@ -5,13 +5,32 @@
 // The app shell's HeaderPanel supplies the geometry, the open/close transition and the
 // "Notifications" heading. These rules style only the content we render inside it.
 //
-// That panel is a dark brand surface ($brand-02, #004144) and the shell renders its own heading
-// white on it, so everything here is styled for a dark background: $ui-02 for primary text,
-// $color-gray-30 for secondary, and white alphas for dividers and hover. Reaching for the
-// light-surface tokens ($ui-05, $text-02) puts near-black text on dark teal.
-$panel-divider: rgba($ui-02, 0.16);
-$panel-hover: rgba($ui-02, 0.08);
-$panel-text-secondary: $color-gray-30;
+// Except for the panel's own theme. Carbon's HeaderPanel inherits the g100 header theme, which is
+// too narrow and too dark for an inbox, so the light surface and the width are ours — the same
+// override the module carried while it still rendered its own panel, re-applied now that the shell
+// renders it for us. `:has()` keeps it to the panel holding these rows, leaving the user and
+// app-menu panels dark as the shell intends.
+:global(.cds--header-panel):has(.rows) {
+  background-color: $ui-background;
+  color: $ui-05;
+
+  // The shell's own "Notifications" heading is coloured for the dark panel, so on the light surface
+  // it comes through white on white. Matched on the element rather than its class, which is a
+  // hashed CSS-module name belonging to primary-navigation.
+  :global(h1) {
+    color: $ui-05;
+  }
+}
+
+// Width belongs to the expanded state only. Carbon collapses the panel with `width: 0`, so sizing
+// the base selector pins it open — the panel must stay hidden until the bell is clicked.
+:global(.cds--header-panel--expanded):has(.rows) {
+  display: flex;
+  flex-direction: column;
+  inline-size: 25rem;
+  max-inline-size: 100vw;
+  overflow: hidden;
+}
 
 .rows {
   display: flex;
@@ -21,7 +40,7 @@ $panel-text-secondary: $color-gray-30;
 
 .header {
   align-items: center;
-  border-bottom: 1px solid $panel-divider;
+  border-bottom: 1px solid $ui-03;
   display: flex;
   justify-content: space-between;
   padding: 0 layout.$spacing-03 layout.$spacing-04 layout.$spacing-05;
@@ -29,22 +48,12 @@ $panel-text-secondary: $color-gray-30;
 
 .subtitle {
   @include type.type-style('body-compact-01');
-  color: $panel-text-secondary;
+  color: $text-02;
   margin-top: layout.$spacing-02;
 }
 
 .closeButton {
   flex-shrink: 0;
-
-  // Carbon's ghost button is built for light surfaces; force the glyph and its states to read on
-  // the dark panel.
-  color: $ui-02;
-
-  &:hover,
-  &:focus {
-    background-color: $panel-hover;
-    color: $ui-02;
-  }
 }
 
 .body {
@@ -54,7 +63,7 @@ $panel-text-secondary: $color-gray-30;
 
 .sectionLabel {
   @include type.type-style('label-01');
-  color: $panel-text-secondary;
+  color: $text-02;
   letter-spacing: 0.04em;
   padding: layout.$spacing-04 layout.$spacing-05 layout.$spacing-02;
   text-transform: uppercase;
@@ -68,7 +77,7 @@ $panel-text-secondary: $color-gray-30;
   align-items: flex-start;
   background: none;
   border: none;
-  border-bottom: 1px solid $panel-divider;
+  border-bottom: 1px solid $ui-03;
   cursor: pointer;
   display: flex;
   gap: layout.$spacing-04;
@@ -77,20 +86,19 @@ $panel-text-secondary: $color-gray-30;
   width: 100%;
 
   &:hover {
-    background-color: $panel-hover;
+    background-color: $ui-02;
   }
 
   &:focus-visible {
-    outline: 2px solid $ui-02;
+    outline: 2px solid $interactive-01;
     outline-offset: -2px;
   }
 }
 
 // Unread rows carry a leading accent and a bolder patient name; once opened, a row keeps its place
-// in the inbox but stops competing for attention. The accent is a bright brand teal rather than
-// $interactive-01, which is too dark to register against the panel.
+// in the inbox but stops competing for attention.
 .rowUnread {
-  box-shadow: inset layout.$spacing-02 0 0 0 $brand-primary-30;
+  box-shadow: inset layout.$spacing-02 0 0 0 $interactive-01;
 
   .rowPatient {
     font-weight: 600;
@@ -125,49 +133,43 @@ $panel-text-secondary: $color-gray-30;
 
 .rowKind {
   @include type.type-style('label-01');
-  color: $panel-text-secondary;
+  color: $text-02;
 }
 
 .rowTime {
   @include type.type-style('label-01');
-  color: $panel-text-secondary;
+  color: $text-02;
   margin-left: auto;
 }
 
 .rowPatient {
   @include type.type-style('body-compact-01');
-  color: $ui-02;
+  color: $ui-05;
 }
 
 .rowTest {
   @include type.type-style('body-compact-01');
-  color: $ui-02;
+  color: $ui-05;
 }
 
 .rowRange {
   @include type.type-style('label-01');
-  color: $panel-text-secondary;
+  color: $text-02;
 }
 
 .chevron {
   align-self: center;
-  color: $panel-text-secondary;
+  color: $text-02;
   flex-shrink: 0;
 }
 
 .loading {
   padding: layout.$spacing-05;
-
-  // Carbon's skeleton is a light-grey shimmer that disappears on the dark panel.
-  :global(.cds--skeleton__text) {
-    background-color: $panel-hover;
-  }
 }
 
 .error {
   @include type.type-style('body-compact-01');
-  // $danger is tuned for white; the lighter red is the readable one on dark teal.
-  color: $carbon--red-50;
+  color: $danger;
   padding: layout.$spacing-05;
 }
 
@@ -178,23 +180,23 @@ $panel-text-secondary: $color-gray-30;
 
 .emptyStateTitle {
   @include type.type-style('heading-compact-01');
-  color: $ui-02;
+  color: $ui-05;
   margin-bottom: layout.$spacing-03;
 }
 
 .emptyStateBody {
   @include type.type-style('body-compact-01');
-  color: $panel-text-secondary;
+  color: $text-02;
 }
 
 .footer {
   @include type.type-style('label-01');
-  border-top: 1px solid $panel-divider;
-  color: $panel-text-secondary;
+  border-top: 1px solid $ui-03;
+  color: $text-02;
   padding: layout.$spacing-04 layout.$spacing-05;
 
   strong {
-    color: $ui-02;
+    color: $ui-05;
     font-weight: 600;
   }
 }
