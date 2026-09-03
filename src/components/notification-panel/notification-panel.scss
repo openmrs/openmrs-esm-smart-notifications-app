@@ -4,6 +4,15 @@
 
 // The app shell's HeaderPanel supplies the geometry, the open/close transition and the
 // "Notifications" heading. These rules style only the content we render inside it.
+//
+// That panel is a dark brand surface ($brand-02, #004144) and the shell renders its own heading
+// white on it, so everything here is styled for a dark background: $ui-02 for primary text,
+// $color-gray-30 for secondary, and white alphas for dividers and hover. Reaching for the
+// light-surface tokens ($ui-05, $text-02) puts near-black text on dark teal.
+$panel-divider: rgba($ui-02, 0.16);
+$panel-hover: rgba($ui-02, 0.08);
+$panel-text-secondary: $color-gray-30;
+
 .rows {
   display: flex;
   flex-direction: column;
@@ -12,7 +21,7 @@
 
 .header {
   align-items: center;
-  border-bottom: 1px solid $ui-03;
+  border-bottom: 1px solid $panel-divider;
   display: flex;
   justify-content: space-between;
   padding: 0 layout.$spacing-03 layout.$spacing-04 layout.$spacing-05;
@@ -20,12 +29,22 @@
 
 .subtitle {
   @include type.type-style('body-compact-01');
-  color: $text-02;
+  color: $panel-text-secondary;
   margin-top: layout.$spacing-02;
 }
 
 .closeButton {
   flex-shrink: 0;
+
+  // Carbon's ghost button is built for light surfaces; force the glyph and its states to read on
+  // the dark panel.
+  color: $ui-02;
+
+  &:hover,
+  &:focus {
+    background-color: $panel-hover;
+    color: $ui-02;
+  }
 }
 
 .body {
@@ -35,7 +54,7 @@
 
 .sectionLabel {
   @include type.type-style('label-01');
-  color: $text-02;
+  color: $panel-text-secondary;
   letter-spacing: 0.04em;
   padding: layout.$spacing-04 layout.$spacing-05 layout.$spacing-02;
   text-transform: uppercase;
@@ -49,7 +68,7 @@
   align-items: flex-start;
   background: none;
   border: none;
-  border-bottom: 1px solid $ui-03;
+  border-bottom: 1px solid $panel-divider;
   cursor: pointer;
   display: flex;
   gap: layout.$spacing-04;
@@ -58,19 +77,20 @@
   width: 100%;
 
   &:hover {
-    background-color: $ui-02;
+    background-color: $panel-hover;
   }
 
   &:focus-visible {
-    outline: 2px solid $interactive-01;
+    outline: 2px solid $ui-02;
     outline-offset: -2px;
   }
 }
 
 // Unread rows carry a leading accent and a bolder patient name; once opened, a row keeps its place
-// in the inbox but stops competing for attention.
+// in the inbox but stops competing for attention. The accent is a bright brand teal rather than
+// $interactive-01, which is too dark to register against the panel.
 .rowUnread {
-  box-shadow: inset layout.$spacing-02 0 0 0 $interactive-01;
+  box-shadow: inset layout.$spacing-02 0 0 0 $brand-primary-30;
 
   .rowPatient {
     font-weight: 600;
@@ -105,43 +125,49 @@
 
 .rowKind {
   @include type.type-style('label-01');
-  color: $text-02;
+  color: $panel-text-secondary;
 }
 
 .rowTime {
   @include type.type-style('label-01');
-  color: $text-02;
+  color: $panel-text-secondary;
   margin-left: auto;
 }
 
 .rowPatient {
   @include type.type-style('body-compact-01');
-  color: $ui-05;
+  color: $ui-02;
 }
 
 .rowTest {
   @include type.type-style('body-compact-01');
-  color: $ui-05;
+  color: $ui-02;
 }
 
 .rowRange {
   @include type.type-style('label-01');
-  color: $text-02;
+  color: $panel-text-secondary;
 }
 
 .chevron {
   align-self: center;
-  color: $text-02;
+  color: $panel-text-secondary;
   flex-shrink: 0;
 }
 
 .loading {
   padding: layout.$spacing-05;
+
+  // Carbon's skeleton is a light-grey shimmer that disappears on the dark panel.
+  :global(.cds--skeleton__text) {
+    background-color: $panel-hover;
+  }
 }
 
 .error {
   @include type.type-style('body-compact-01');
-  color: $danger;
+  // $danger is tuned for white; the lighter red is the readable one on dark teal.
+  color: $carbon--red-50;
   padding: layout.$spacing-05;
 }
 
@@ -152,23 +178,23 @@
 
 .emptyStateTitle {
   @include type.type-style('heading-compact-01');
-  color: $ui-05;
+  color: $ui-02;
   margin-bottom: layout.$spacing-03;
 }
 
 .emptyStateBody {
   @include type.type-style('body-compact-01');
-  color: $text-02;
+  color: $panel-text-secondary;
 }
 
 .footer {
   @include type.type-style('label-01');
-  border-top: 1px solid $ui-03;
-  color: $text-02;
+  border-top: 1px solid $panel-divider;
+  color: $panel-text-secondary;
   padding: layout.$spacing-04 layout.$spacing-05;
 
   strong {
-    color: $ui-05;
+    color: $ui-02;
     font-weight: 600;
   }
 }

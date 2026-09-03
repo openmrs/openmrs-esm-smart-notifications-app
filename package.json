@@ -8,6 +8,7 @@
   "source": true,
   "scripts": {
     "start": "openmrs develop",
+    "start:with-chart": "openmrs develop --sources . --sources \"${OPENMRS_CHART_PATH:-../openmrs-esm-patient-chart}/packages/esm-patient-tests-app\"",
     "build": "rspack --mode production",
     "build:development": "rspack --mode development",
     "analyze": "rspack --mode=production --env.analyze=true",
