@@ -168,6 +168,30 @@ describe('what actually reaches the bell', () => {
       .map(({ order, obs }) => toLabNotification(order, obs, { notifyOnAbnormalNonCritical: false, optedIn }))
       .filter(Boolean);
   }
+  it('keeps the notification location from the lab order', () => {
+    const notification = derive(
+      [
+        labOrder({
+          encounter: {
+            uuid: 'encounter-1',
+            location: {
+              uuid: 'location-a',
+              display: 'Location A',
+            },
+          },
+        }),
+      ],
+      [glucoseResult()],
+      true,
+    );
+
+    expect(notification).toEqual([
+      expect.objectContaining({
+        locationUuid: 'location-a',
+        locationDisplay: 'Location A',
+      }),
+    ]);
+  });
 
   it('stays silent for a routine order the clinician did not opt into', () => {
     expect(derive([labOrder()], [glucoseResult()])).toEqual([]);
