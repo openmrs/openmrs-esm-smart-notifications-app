@@ -24,15 +24,13 @@
     "noImplicitAny": false,
     "baseUrl": ".",
     "paths": {
-      "__mocks__": ["./__mocks__"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@resources/*": ["./src/resources/*"],
-      "@utils/*": ["./src/utils/*"]
-,
+      "__mocks__": ["./__mocks__/index.ts"],
+      "@core/*": ["./src/core/*"],
+      "@sources/*": ["./src/sources/*"],
       "@tools/*": ["./tools/*"],
       "@constants": ["./src/constants"]
     }
   },
-  "include": ["src/**/*", "tools/setup-tests.ts", "vitest.config.ts"],
-  "types": ["lodash", "react", "react-dom", "vitest/globals"]
+  "include": ["src/**/*", "__mocks__/**/*", "tools/setup-tests.ts", "vitest.config.ts"],
+  "types": ["react", "react-dom", "fhir", "vitest/globals"]
 }
