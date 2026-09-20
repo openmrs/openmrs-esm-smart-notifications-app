@@ -25,16 +25,16 @@ Once started, your module will be available at:
 
 ### OpenMRS O3 resources
 
-- [Getting Started](https://o3-docs.openmrs.org/docs/getting-started) - Start here for O3 development
-- [Creating a Frontend Module](https://o3-docs.openmrs.org/docs/frontend-modules/creating-a-frontend-module) - Step-by-step guide
-- [Framework Concepts](https://o3-docs.openmrs.org/docs/framework-concepts) - Core O3 patterns
+- [Getting Started](https://o3-docs.openmrs.org/en-US/docs/frontend-modules/setup) - Start here for O3 development
+- [Creating a Frontend Module](https://o3-docs.openmrs.org/en-US/docs/recipes/create-a-frontend-module) - Step-by-step guide
+- [Framework Concepts](https://o3-docs.openmrs.org/en-US/docs/core-concepts) - Core O3 patterns
 
 ### Development guide
 
 - [Extension System](https://o3-docs.openmrs.org/docs/extension-system) - Adding widgets and extensions
-- [State Management](https://o3-docs.openmrs.org/docs/state-management) - Managing app state
-- [Carbon and Styling](https://o3-docs.openmrs.org/docs/carbon-and-styling) - UI components and styling
-- [Testing](https://o3-docs.openmrs.org/docs/testing) - Testing your module
+- [State Management](https://o3-docs.openmrs.org/en-US/docs/coding-conventions/state-management) - Managing app state
+- [Carbon and Styling](https://o3-docs.openmrs.org/en-US/docs/coding-conventions/styling) - UI components and styling
+- [Testing](https://o3-docs.openmrs.org/en-US/docs/frontend-modules/unit-and-integration-testing) - Testing your module
 
 ### Community
 
@@ -45,7 +45,7 @@ Once started, your module will be available at:
 
 ### Adding new routes
 
-See the [Routing Guide](https://o3-docs.openmrs.org/docs/frontend-modules/routing) for details.
+See the [routes registry documentation](https://o3-docs.openmrs.org/en-US/docs/core-concepts#routes-registry) for details.
 
 
 ### Development commands
