@@ -2,29 +2,41 @@
 
 Frontend module for smart clinical notifications in O3.
 
-Clinicians have no automated signal when something they are waiting on happens, but alerting on
-everything causes alert fatigue. This module adds a notification bell to the top-nav header that
-surfaces only what needs attention, and leaves everything routine to be filed silently.
+## Quick start
 
-It is **generic**. The bell, the inbox, the detail modal and the read/review lifecycle live in the
-core and know nothing about labs, prescriptions or any other clinical domain. What is worth raising
-is decided by pluggable **notification sources**. Lab results are one source; they are not the
-architecture.
+\`\`\`bash
+yarn install
+yarn start
+\`\`\`
+
+Once started, your module will be available at:
+**http://localhost:8080/openmrs/spa/smart-notifications-app**
+
+## What's included
+
+- ✅ OpenMRS 3.0 microfrontend setup
+- ✅ Carbon Design System integration
+- ✅ Internationalization (i18n) ready
+- ✅ TypeScript configuration
+- ✅ Jest testing setup
+- ✅ ESLint + Prettier
+
+## Learn more
+
+### OpenMRS O3 resources
+
+- [Getting Started](https://o3-docs.openmrs.org/en-US/docs/frontend-modules/setup) - Start here for O3 development
+- [Creating a Frontend Module](https://o3-docs.openmrs.org/en-US/docs/recipes/create-a-frontend-module) - Step-by-step guide
+- [Framework Concepts](https://o3-docs.openmrs.org/en-US/docs/core-concepts) - Core O3 patterns
 
 ## Notification sources
 
 Two are built in, and either can be turned off independently.
 
-| Source                  | Where notifications come from                                                                                             | Needs a backend module? |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
-| `lab-results`           | Derived on the client by joining the patient's lab orders with their FHIR observations                                     | No                      |
-| `notifications-backend` | The [`notifications` backend module](https://github.com/openmrs/openmrs-module-notifications)'s `/ws/rest/v1/notification` | Yes                     |
-
-`lab-results` is patient-scoped: it derives notifications for the chart that is open. It raises one
-when a result is **critical**, when the order was placed **STAT**, when the clinician **opted in**
-via "Notify me when resulted" on the test-order form, or when the **sample was rejected**. Everything
-else — routine, in-range, non-opt-in — files silently. Critical values always notify and cannot be
-configured off; that is a patient-safety guarantee, not a preference.
+- [Extension System](https://o3-docs.openmrs.org/docs/extension-system) - Adding widgets and extensions
+- [State Management](https://o3-docs.openmrs.org/en-US/docs/coding-conventions/state-management) - Managing app state
+- [Carbon and Styling](https://o3-docs.openmrs.org/en-US/docs/coding-conventions/styling) - UI components and styling
+- [Testing](https://o3-docs.openmrs.org/en-US/docs/frontend-modules/unit-and-integration-testing) - Testing your module
 
 `notifications-backend` is recipient-scoped and cross-patient: the server's `NotificationRuleEngine`
 decides what exists, and this module renders it and drives the lifecycle. It is **off by default** —
@@ -138,7 +150,17 @@ those two features simply no-op.
   ordering the same test twice makes both results notify. That errs toward notifying, which is the
   safe direction.
 
-## Quick start
+- [OpenMRS Talk](https://talk.openmrs.org/) - Community forum for questions
+- [OpenMRS Wiki](https://wiki.openmrs.org/display/RES/OpenMRS+3.x+Dev+Forum) - Join the developer community
+
+## Common tasks
+
+### Adding new routes
+
+See the [routes registry documentation](https://o3-docs.openmrs.org/en-US/docs/core-concepts#routes-registry) for details.
+
+
+### Development commands
 
 ```bash
 yarn install
