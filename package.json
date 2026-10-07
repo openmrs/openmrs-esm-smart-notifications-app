@@ -8,6 +8,7 @@
   "source": true,
   "scripts": {
     "start": "openmrs develop",
+    "start:with-chart": "openmrs develop --sources . --sources \"${OPENMRS_CHART_PATH:-../openmrs-esm-patient-chart}/packages/esm-patient-tests-app\"",
     "build": "rspack --mode production",
     "build:development": "rspack --mode development",
     "analyze": "rspack --mode=production --env.analyze=true",
@@ -16,8 +17,9 @@
     "test:watch": "vitest watch",
     "coverage": "vitest run --coverage --passWithNoTests",
     "typescript": "tsc",
+    "sync-routes": "node tools/sync-routes.mjs",
     "lint": "eslint src",
-    "extract-translations": "i18next 'src/**/*.component.tsx' 'src/**/*.extension.tsx' 'src/**/*.modal.tsx' 'src/index.ts' --config ./tools/i18next-parser.config.js",
+    "extract-translations": "i18next 'src/**/*.component.tsx' 'src/**/*.extension.tsx' 'src/**/*.modal.tsx' 'src/core/*.ts' 'src/sources/**/*.ts' 'src/index.ts' --config ./tools/i18next-parser.config.js",
     "prettier": "prettier --config prettier.config.js --write \"src/**/*.{ts,tsx,css,scss}\"",
     "postinstall": "husky install"
   },
