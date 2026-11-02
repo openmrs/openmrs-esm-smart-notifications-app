@@ -1,0 +1,16 @@
+@use '@carbon/layout';
+
+.container {
+  margin-bottom: layout.$spacing-05;
+}
+
+.hint {
+  margin-top: layout.$spacing-03;
+  margin-bottom: 0;
+  max-width: unset;
+  width: 100%;
+}
+
+.futureReleaseNote {
+  color: var(--cds-text-secondary);
+}
