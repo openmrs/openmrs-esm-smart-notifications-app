@@ -39,6 +39,7 @@ export default defineConfig({
       },
     },
     alias: [
+      { find: /^__mocks__$/, replacement: r('./__mocks__/index.ts') },
       { find: /^@openmrs\/esm-framework$/, replacement: '@openmrs/esm-framework/mock' },
       { find: 'react-i18next', replacement: r('./__mocks__/react-i18next.js') },
       { find: /^@sources\/(.*)$/, replacement: r('./src/sources/') + '$1' },
