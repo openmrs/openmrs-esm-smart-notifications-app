@@ -2948,7 +2948,7 @@ __metadata:
     rxjs: "npm:^6.5.3"
     sass: "npm:^1.33.0"
     single-spa: "npm:^6.0.0"
-    swr: "npm:^2.0.0"
+    swr: "npm:2.5.1"
     typescript: "npm:^5.9.3"
     vitest: "npm:^4.1.2"
   peerDependencies:
@@ -14244,15 +14244,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"swr@npm:^2.0.0":
-  version: 2.4.1
-  resolution: "swr@npm:2.4.1"
+"swr@npm:2.5.1":
+  version: 2.5.1
+  resolution: "swr@npm:2.5.1"
   dependencies:
     dequal: "npm:^2.0.3"
     use-sync-external-store: "npm:^1.6.0"
   peerDependencies:
     react: ^16.11.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10c0/34d61fb4653ac8875ad24e7c6da37e210b0e90fce0815dc59f013b7554a0bd267e79aac0f8ae5fbf04992e2a1815ee3da581b0dab3ed6ac4c2ce0e82b351320f
+  checksum: 10c0/46a815a8abaf38378c6febc3beacedf4d7e1fafce0656ff6ed23561cfa9e380de3831d708b36d516f70bd3d0decac824108bce96d0826f258c33cf56e1e837b6
   languageName: node
   linkType: hard
 
