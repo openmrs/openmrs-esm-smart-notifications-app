@@ -3,11 +3,6 @@ node_modules/
 .pnp
 .pnp.js
 
-# npm lockfile - this project uses Yarn
-package-lock.json
-
-# Generated dev-server registry (run `yarn sync-routes`)
-routes.registry.json
 
 # Testing
 coverage/
@@ -18,7 +13,6 @@ dist/
 build/
 
 # Misc
-.eslintcache
 .DS_Store
 .env.local
 .env.development.local
