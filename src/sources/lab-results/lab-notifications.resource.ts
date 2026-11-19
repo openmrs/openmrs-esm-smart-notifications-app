@@ -171,7 +171,7 @@ export function useLabNotifications(patientUuid: string | null, config: LabSourc
   const shouldFetch = Boolean(enabled && patientUuid);
 
   const ordersUrl = shouldFetch
-    ? `${restBaseUrl}/order?patient=${patientUuid}&careSetting=${careSettingUuid}&status=any&orderType=${labOrderTypeUuid}&v=custom:(uuid,orderNumber,dateActivated,urgency,fulfillerStatus,fulfillerComment,display,patient:(uuid),concept:(uuid,display),orderer:(display,person:(display)),encounter:(uuid,location:(uuid,display)))`
+    ? `${restBaseUrl}/order?patient=${patientUuid}&careSetting=${careSettingUuid}&orderTypes=${labOrderTypeUuid}&v=custom:(uuid,orderNumber,dateActivated,urgency,fulfillerStatus,fulfillerComment,display,patient:(uuid),concept:(uuid,display),orderer:(display,person:(display)),encounter:(uuid,location:(uuid,display)))`
     : null;
   const observationsUrl = shouldFetch
     ? `${fhirBaseUrl}/Observation?patient=${patientUuid}&category=laboratory&_sort=-_date&_count=100`
