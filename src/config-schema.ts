@@ -38,11 +38,6 @@ export const configSchema = {
         _description:
           'Also raise a notification for abnormal-but-not-critical values. Critical values always notify and cannot be turned off.',
       },
-      locationScoped: {
-        _type: Type.Boolean,
-        _default: true,
-        _description: 'Only surface a notification at the location where the order was placed.',
-      },
       notificationWindowDays: {
         _type: Type.Number,
         _default: 7,
@@ -92,7 +87,6 @@ export interface ConfigSchema {
       enabled: boolean;
       labOrderTypeUuid: string;
       notifyOnAbnormalNonCritical: boolean;
-      locationScoped: boolean;
       notificationWindowDays: number;
     };
     notificationsBackend: {

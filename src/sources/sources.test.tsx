@@ -21,7 +21,7 @@ const config = {
       enabled: true,
       labOrderTypeUuid: 'lab-order-type',
       notifyOnAbnormalNonCritical: false,
-      locationScoped: true,
+      // locationScoped: true,
       notificationWindowDays: 7,
     },
     notificationsBackend: {

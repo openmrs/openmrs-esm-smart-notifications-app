@@ -29,7 +29,6 @@ export interface LabSourceConfig {
   enabled: boolean;
   labOrderTypeUuid: string;
   notifyOnAbnormalNonCritical: boolean;
-  locationScoped: boolean;
   notificationWindowDays: number;
   pollingIntervalMs: number;
 }
@@ -157,21 +156,14 @@ const noNotifications: Array<LabNotification> = [];
  * notifications are triaged the same way.
  */
 export function useLabNotifications(patientUuid: string | null, config: LabSourceConfig) {
-  const {
-    enabled,
-    labOrderTypeUuid,
-    locationScoped,
-    notifyOnAbnormalNonCritical,
-    notificationWindowDays,
-    pollingIntervalMs,
-  } = config;
+  const { enabled, labOrderTypeUuid, notifyOnAbnormalNonCritical, notificationWindowDays, pollingIntervalMs } = config;
   const session = useSession();
   const optIns = useOptIns();
 
   const shouldFetch = Boolean(enabled && patientUuid);
 
   const ordersUrl = shouldFetch
-    ? `${restBaseUrl}/order?patient=${patientUuid}&careSetting=${careSettingUuid}&orderTypes=${labOrderTypeUuid}&v=custom:(uuid,orderNumber,dateActivated,urgency,fulfillerStatus,fulfillerComment,display,patient:(uuid),concept:(uuid,display),orderer:(display,person:(display)),encounter:(uuid,location:(uuid,display)))`
+    ? `${restBaseUrl}/order?patient=${patientUuid}&careSetting=${careSettingUuid}&status=any&orderType=${labOrderTypeUuid}&v=custom:(uuid,orderNumber,dateActivated,urgency,fulfillerStatus,fulfillerComment,display,patient:(uuid),concept:(uuid,display),orderer:(display,person:(display)),encounter:(uuid,location:(uuid,display)))`
     : null;
   const observationsUrl = shouldFetch
     ? `${fhirBaseUrl}/Observation?patient=${patientUuid}&category=laboratory&_sort=-_date&_count=100`
@@ -241,16 +233,12 @@ export function useLabNotifications(patientUuid: string | null, config: LabSourc
       // recorded location are always shown rather than silently hidden.
       .filter(
         (notification) =>
-          !locationScoped ||
-          !sessionLocationUuid ||
-          !notification.locationUuid ||
-          notification.locationUuid === sessionLocationUuid,
+          !sessionLocationUuid || !notification.locationUuid || notification.locationUuid === sessionLocationUuid,
       );
 
     return sortLabNotifications(derived);
   }, [
     assess,
-    locationScoped,
     notificationWindowDays,
     notifyOnAbnormalNonCritical,
     optIns,
