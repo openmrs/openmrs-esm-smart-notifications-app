@@ -9,6 +9,14 @@
     }
   ],
   "extensions": [
+    {
+      "name": "notify-when-resulted",
+      "slot": "top-of-lab-order-form-slot",
+      "component": "notifyWhenResulted",
+      "online": true,
+      "offline": false,
+      "order": 10
+    }
   ]
 }
 
